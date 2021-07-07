@@ -1,3 +1,5 @@
+/* global suite, test */
+
 var should = require('should');
 var si = require('../');
 
@@ -99,7 +101,7 @@ exports.validation = function () {
 	}); // suite "schema #1"
 
 	suite('schema #1.1 (Types tests)', function () {
-		function F() {};
+		function F() {}
 		var schema = {
 			type: 'array',
 			items: [
@@ -107,7 +109,7 @@ exports.validation = function () {
 				{ type: 'string' },
 				{ type: 'number' },
 				{ type: 'integer' },
-				{ type: F },
+				{ type: F }
 			]
 		};
 
@@ -127,7 +129,7 @@ exports.validation = function () {
 		});
 
 		test('candidate #2', function () {
-			function G() {};
+			function G() {}
 			var candidate = [
 				null,
 				'Nikita',
@@ -637,7 +639,7 @@ exports.validation = function () {
 				'2012-08-08T14:30:09.032+02:00',
 				'2012-08-08T14:30:09+02:00',
 				'2012-08-08T14:30:09.032Z',
-				'2012-08-08T14:30:09Z',
+				'2012-08-08T14:30:09Z'
 			];
 
 			var result = si.validate(schema, candidate);
@@ -650,9 +652,9 @@ exports.validation = function () {
 		test('candidate #2', function () {
 			var candidate = [
 				'2012-08-08T14:30:09.32+02:00',
-	      '2012-08-08T14:30:09+2:00',
+				'2012-08-08T14:30:09+2:00',
         '2012-08-08T14:30:09.032',
-        '2012-08-08 14:30:09',
+        '2012-08-08 14:30:09'
       ];
 
 			var result = si.validate(schema, candidate);
@@ -911,7 +913,6 @@ exports.validation = function () {
 		});
 
 	}); // suite "schema #10"
-
 
 	suite('schema #11 (uniqueness checking [uniquess is not given])', function () {
 		var schema = {
@@ -1283,9 +1284,9 @@ exports.validation = function () {
 
 		test('candidate #1', function () {
 			var candidate = [
-			 	'thisIsAString',
-			 	1234,
-			 	new Date()
+				'thisIsAString',
+				1234,
+				new Date()
 			];
 
 			var result = si.validate(schema, candidate);
@@ -1465,7 +1466,7 @@ exports.validation = function () {
 				properties: {
 					parent: {
 						someKeys: ['a', 'b'],
-						optional: true,
+						optional: true
 					}
 				}
 			};
@@ -1482,7 +1483,7 @@ exports.validation = function () {
 				properties: {
 					parent: {
 						someKeys: ['a', 'b'],
-						optional: true,
+						optional: true
 					}
 				}
 			};
@@ -1737,7 +1738,7 @@ exports.validation = function () {
 				},
 				arr: [12, 23, 34, 45, 56, 67, 78, 89, 90, 123]
 			};
-			si.validate(schema, candidate, function (err, result) {
+			si.validate(schema, candidate, function (err) {
 				should.exist(err);
 				err.message.should.equal('Array length is too damn high!');
 				done();
@@ -1865,7 +1866,7 @@ exports.validation = function () {
 		test('candidate #1', function () {
 			var candidate = {
 				lorem: 12,
-				ipsum: 25,
+				ipsum: 25
 			};
 
 			var result = si.validate(schema, candidate, custom);
@@ -1878,7 +1879,7 @@ exports.validation = function () {
 		test('candidate #2', function () {
 			var candidate = {
 				lorem: 11,
-				ipsum: 22,
+				ipsum: 22
 			};
 
 			var result = si.validate(schema, candidate, custom);
@@ -1940,7 +1941,7 @@ exports.validation = function () {
 		test('candidate #2', function (done) {
 			var candidate = {
 				lorem: 11,
-				ipsum: 22,
+				ipsum: 22
 			};
 
 			si.validate(schema, candidate, custom, function (err, result) {
@@ -1962,14 +1963,13 @@ exports.validation = function () {
 				dolor: 32
 			};
 
-			si.validate(schema, candidate, custom, function (err, result) {
+			si.validate(schema, candidate, custom, function (err) {
 				should.exist(err);
 				err.message.should.equal('Schema error: Divisor must not equal 0');
 				done();
 			});
 		});
 	}); // suite "schema #20.1"
-
 
 	suite('schema #20.2 (default custom schemas)', function () {
 		var schema = {
@@ -2022,7 +2022,7 @@ exports.validation = function () {
 		test('candidate #2', function (done) {
 			var candidate = {
 				lorem: 11,
-				ipsum: 22,
+				ipsum: 22
 			};
 
 			si.validate(schema, candidate, function (err, result) {
@@ -2044,7 +2044,7 @@ exports.validation = function () {
 				dolor: 32
 			};
 
-			si.validate(schema, candidate, function (err, result) {
+			si.validate(schema, candidate, function (err) {
 				should.exist(err);
 				err.message.should.equal('Schema error: Divisor must not equal 0');
 				done();
